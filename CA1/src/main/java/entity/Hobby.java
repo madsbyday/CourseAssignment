@@ -6,33 +6,31 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
  * @author vfgya_000
  */
 @Entity
-public class Company extends InfoEntity implements Serializable {
+public class Hobby implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
     
     private String name;
     
     private String description;
     
-    private String cvr;
-    
-    private int numEmployees;
-    
-    private double marketValue;
+    @ManyToMany
+    private List<Person> persons;
 
     public Long getId() {
         return id;
@@ -58,32 +56,16 @@ public class Company extends InfoEntity implements Serializable {
         this.description = description;
     }
 
-    public String getCvr() {
-        return cvr;
+    public List<Person> getPersons() {
+        return persons;
     }
 
-    public void setCvr(String cvr) {
-        this.cvr = cvr;
+    public void setPersons(List<Person> persons) {
+        this.persons = persons;
     }
-
-    public int getNumEmployees() {
-        return numEmployees;
-    }
-
-    public void setNumEmployees(int numEmployees) {
-        this.numEmployees = numEmployees;
-    }
-
-    public double getMarketValue() {
-        return marketValue;
-    }
-
-    public void setMarketValue(double marketValue) {
-        this.marketValue = marketValue;
-    }
-
     
     
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -94,10 +76,10 @@ public class Company extends InfoEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Company)) {
+        if (!(object instanceof Hobby)) {
             return false;
         }
-        Company other = (Company) object;
+        Hobby other = (Hobby) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -106,7 +88,7 @@ public class Company extends InfoEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Company[ id=" + id + " ]";
+        return "entity.Hobby[ id=" + id + " ]";
     }
     
 }
