@@ -5,7 +5,7 @@
  */
 package rest;
 
-import Facade.FacadeImpl;
+import Facade.facadeImpl;
 import converter.JSONConverter;
 import entity.Person;
 import javax.persistence.Persistence;
@@ -18,7 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
-import Facade.FacadeInterface;
+import Facade.facadeInterface;
 
 /**
  * REST Web Service
@@ -31,7 +31,7 @@ public class PersonRest {
     @Context
     private UriInfo context;
 
-    private FacadeInterface f = new FacadeImpl();
+    private facadeInterface f = new facadeImpl();
     
     public PersonRest() {
     }
