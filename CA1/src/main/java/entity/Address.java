@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -25,6 +26,9 @@ public class Address implements Serializable {
     
     private String street;
     private String additionalInfo;
+    
+    @ManyToOne
+    private CityInfo cityInfo;
 
     public Long getId() {
         return id;
