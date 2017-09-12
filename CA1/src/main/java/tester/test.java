@@ -21,6 +21,8 @@ public class test {
         
         puproperties.remove("javax.persistence.sql-load-script-source");
         Persistence.generateSchema("CAPU", puproperties);
+        
+        
     }
     
 }

@@ -31,7 +31,7 @@ public class PersonRest {
     @Context
     private UriInfo context;
 
-    private FacadeInterface f = new FacadeImpl();
+    private FacadeInterface f = new FacadeImpl(Persistence.createEntityManagerFactory("CAPU"));
     
     public PersonRest() {
     }
