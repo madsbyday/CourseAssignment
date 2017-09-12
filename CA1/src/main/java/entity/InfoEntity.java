@@ -6,31 +6,28 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  *
  * @author vfgya_000
  */
 @Entity
-public class Person extends InfoEntity implements Serializable {
-
-    @ManyToMany(mappedBy = "persons")
-    private List<Hobby> hobbys;
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class InfoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String firstName;
+    private String email;
     
-    private String lastName;
 
     public Long getId() {
         return id;
@@ -40,28 +37,12 @@ public class Person extends InfoEntity implements Serializable {
         this.id = id;
     }
 
-    public List<Hobby> getHobbys() {
-        return hobbys;
+    public String getEmail() {
+        return email;
     }
 
-    public void setHobbys(List<Hobby> hobbys) {
-        this.hobbys = hobbys;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     
@@ -76,10 +57,10 @@ public class Person extends InfoEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
+        if (!(object instanceof InfoEntity)) {
             return false;
         }
-        Person other = (Person) object;
+        InfoEntity other = (InfoEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -88,7 +69,7 @@ public class Person extends InfoEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Person[ id=" + id + " ]";
+        return "entity.InfoEntity[ id=" + id + " ]";
     }
     
 }
