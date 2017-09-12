@@ -19,6 +19,23 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 public class Company extends InfoEntity implements Serializable {
+
+    public Company(String name, String description, int numEmployees, double marketValue, String email)
+    {
+        super(email);
+        this.name = name;
+        this.description = description;
+        this.numEmployees = numEmployees;
+        this.marketValue = marketValue;
+    }
+
+    public Company()
+    {
+        
+    }
+    
+    
+    
     
     private String name;
     

@@ -18,8 +18,8 @@ import javax.persistence.InheritanceType;
  * @author vfgya_000
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class InfoEntity implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class InfoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -27,6 +27,16 @@ public class InfoEntity implements Serializable {
     private Long id;
     
     private String email;
+
+    public InfoEntity(String email)
+    {
+        this.email = email;
+    }
+
+    public InfoEntity()
+    {
+    }
+    
     
 
     public Long getId() {
