@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Alexander
  */
-public class Generator {
+public class Generate {
 
     Random rnd = new Random();
 

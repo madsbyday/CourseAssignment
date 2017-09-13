@@ -59,13 +59,11 @@ public class PersonRest
         Person p = f.getPerson(id);
         String json = new Gson().toJson(p);
         return json;
-    }
+    } // returns person from database as json object
 
-    /**
-     * PUT method for updating or creating an instance of PersonRest
-     *
-     * @param content representation for the resource
-     */
+    
+    
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
