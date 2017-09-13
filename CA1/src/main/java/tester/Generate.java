@@ -46,9 +46,9 @@ public class Generate {
             String email = firstName + idBegin + "@gmail.com";
             String street = lastNames[rnd.nextInt(lastNames.length)] + " " + streetEnd[rnd.nextInt(streetEnd.length)];
             int number = rnd.nextInt(90000000) + 10000000;
-
-            insert = "INSERT INTO PERSON (ID, EMAIL, FIRSTNAME, LASTNAME, ADDRESS_ID) VALUES (" + idBegin + ", '" + email + "','" + firstName + "','" + lastName + "'," + idBegin + "); \n"
-                    + "INSERT INTO HOBBY (DESCRIPTION, NAME) VALUES ('" + hobbyDesc[rnd.nextInt(hobbyDesc.length)] + "', '" + hobbyName[rnd.nextInt(hobbyName.length)] + "'); \n"
+            
+            insert = "INSERT INTO INFOENTITY (ID, EMAIL, ADDRESS_ID) VALUES (" + idBegin + ", '"  + email + "', " + idBegin +"); \n"
+                    + "INSERT INTO PERSON (FIRSTNAME, LASTNAME) VALUES ('" + firstName + "','" + lastName + "'); \n"
                     + "INSERT INTO ADDRESS (ID, ADDITIONALINFO, STREET, CITIINFO_ID) VALUES (" + idBegin + ", '" + streetDesc[0] + "', '" + (rnd.nextInt(100) + 1 + " " + street) + "', " + rnd.nextInt(1352) + "); \n"
                     + "INSERT INTO PHONE (DESCRIPTION, NUMBER, INFOENTITY_ID) VALUES ('" + phoneDesc[rnd.nextInt(phoneDesc.length - 1)] + "', '" + number + "', " + idBegin + "); \n"
                     + "\n";
