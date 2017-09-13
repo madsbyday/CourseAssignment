@@ -82,21 +82,20 @@ public class PersonRestIntegrationTest {
         //Making a new person
         List<Hobby> hobbys = null;
         Person postedPerson = new Person(hobbys, "William", "Thomsen", "William@gmail.com");
-        String js = JSONConverter.getJSONFromPerson(postedPerson);
         Person newPerson = given()
                         .contentType(ContentType.JSON)
-                        .body(js)
+                        .body(postedPerson)
                         .when().post("/api/person")
                         .as(Person.class);
         
         //See if we can get him
         Person gottenPerson = given()
                 .contentType(ContentType.JSON)
-                .body(js)
+                .body(postedPerson)
                 .when().get("/api/person/" + newPerson.getId()).as(Person.class); 
         
         assertNotNull(gottenPerson.getId());
-        //assertEquals("William", gottenPerson.getFirstName());
+        assertEquals("William", gottenPerson.getFirstName());
 
     }
     /*
