@@ -8,9 +8,6 @@ import javax.persistence.EntityManagerFactory;
 
 public interface facadeInterface {
 
-    public void addEntityManagerFactory(EntityManagerFactory emf);
-
-    public EntityManager getEntityManager();
     public Person addPerson(Person p);
     public Person deletePerson(Long id);
     public Person getPerson(Long id);

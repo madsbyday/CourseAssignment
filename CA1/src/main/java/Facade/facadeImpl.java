@@ -7,20 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 public class facadeImpl implements facadeInterface {
+    private EntityManagerFactory emf;
 
-    EntityManagerFactory emf;
-
-    public facadeImpl() {
-    };
-
-    @Override
-    public void addEntityManagerFactory(EntityManagerFactory emf) {
+    public facadeImpl(EntityManagerFactory emf) {
         this.emf = emf;
-    }
-
-    @Override
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
     }
 
     @Override

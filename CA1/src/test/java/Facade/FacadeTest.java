@@ -19,20 +19,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Sanox
- */
 public class FacadeTest {
 
-    private FacadeInterface f = new FacadeImpl(Persistence.createEntityManagerFactory("TESTCAPU"));
+    private facadeInterface f = new facadeImpl(Persistence.createEntityManagerFactory("TESTCAPU"));
 
     public FacadeTest() {
     }
 
     @BeforeClass
     public static void setUpClass() {
-
+        Persistence.generateSchema("TESTCAPU", new HashMap());
     }
 
     @AfterClass
@@ -42,7 +38,7 @@ public class FacadeTest {
 
     @Before
     public void setUp() {
-        Persistence.generateSchema("TESTCAPU", new HashMap());
+        
     }
 
     @After
