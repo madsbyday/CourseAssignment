@@ -92,13 +92,13 @@ public class PersonRestIntegrationTest {
         Person gottenPerson = given()
                 .contentType(ContentType.JSON)
                 .body(postedPerson)
-                .when().get("/api/person/" + newPerson.getId()).as(Person.class); 
+                .when().get("/api/person/complete/" + newPerson.getId()).as(Person.class); 
         
         assertNotNull(gottenPerson.getId());
         assertEquals("William", gottenPerson.getFirstName());
 
     }
-    /*
+ 
     @Test
     public void testDeletePerson() {
         System.out.println("deletePerson");
@@ -115,7 +115,7 @@ public class PersonRestIntegrationTest {
         Person deletedPerson = given()
         .contentType(ContentType.JSON)
         .when().delete("/api/person/" + newPerson.getId()).as(Person.class);
-        assertEquals("Anna", deletedPerson.getFirstName());
+        assertNull(deletedPerson);
     }
-*/
+    
 }
