@@ -73,7 +73,6 @@ public class Generator {
             String desc = companyDesc[rnd.nextInt(companyDesc.length)];
             String street = lastNames[rnd.nextInt(lastNames.length)] + " " + streetEnd[rnd.nextInt(streetEnd.length)];
             int number = rnd.nextInt(90000000) + 10000000;
-            double mkval = rnd.nextDouble() * 1000.0;
             String email = makeEmail(gen1, gen2, gen3);
 
             System.out.println(name + " " + desc + " " + email);
