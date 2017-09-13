@@ -46,7 +46,6 @@ public class GeneratorTest {
         String result = instance.generatePersons(idBegin, amount);
         System.out.println(result);
         assertTrue(true);
-
     }
 
 
