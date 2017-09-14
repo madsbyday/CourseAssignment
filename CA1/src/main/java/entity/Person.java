@@ -20,10 +20,9 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Person extends InfoEntity implements Serializable {
 
-    public Person(List<Hobby> hobbys, String firstName, String lastName, String email)
+    public Person( String firstName, String lastName, String email)
     {
         super(email);
-        this.hobbys = hobbys;
         this.firstName = firstName;
         this.lastName = lastName;
     }

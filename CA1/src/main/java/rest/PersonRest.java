@@ -82,7 +82,7 @@ public class PersonRest
             mail = body.get("email").getAsString();
         }
         
-        Person p = new Person(null, firstName, lastName, mail);
+        Person p = new Person(firstName, lastName, mail);
         f.addPerson(p);
         
         String json = new Gson().toJson(p);
