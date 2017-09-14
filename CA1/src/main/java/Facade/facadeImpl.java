@@ -1,10 +1,12 @@
 package Facade;
 
 import entity.Company;
+import entity.Hobby;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 public class facadeImpl implements facadeInterface {
 
@@ -192,5 +194,27 @@ public class facadeImpl implements facadeInterface {
         return c;
     
     }
+
+    @Override
+    public List<Hobby> getHobbiesByPerson(long id)
+    {
+        EntityManager em = emf.createEntityManager();
+        
+        List<Hobby> hobbies = null;
+        
+        Query query = null;
+        
+        try {
+            em.getTransaction().begin();
+            
+            query = em.createQuery("SELECT h FROM Hobby h inner join h.persons person WHERE person.id = " + 1);
+            
+            return hobbies;
+        }
+        finally {
+            em.close();
+        }
+    }
+
 
 }
