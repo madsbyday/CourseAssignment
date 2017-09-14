@@ -29,6 +29,7 @@ public class Hobby implements Serializable {
     
     private String description;
     
+    
     @ManyToMany
     private List<Person> persons;
 
