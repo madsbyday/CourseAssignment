@@ -23,18 +23,18 @@ public class Populate
     public static void main(String[] args)
     {
 
-        Person p = new Person("Hans", "Andersen", "HA@mail.com");
+        Person p1 = new Person("Lone", "Lassen", "LL@mail.com");
 
         EntityManagerFactory emfn = Persistence.createEntityManagerFactory("CAPU");
         EntityManager em = emfn.createEntityManager();
 
 //        try {
 //            em.getTransaction().begin();
-//            em.persist(p);
+//            em.persist(p1);
 //            em.getTransaction().commit();
 //        } finally {
 //            em.close();
-//        }
+//       }
         List<Hobby> hobbies = null;
 
         Query query = null;

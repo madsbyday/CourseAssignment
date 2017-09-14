@@ -22,6 +22,8 @@ import Facade.facadeInterface;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import entity.Hobby;
+import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import jdk.nashorn.internal.parser.JSONParser;
