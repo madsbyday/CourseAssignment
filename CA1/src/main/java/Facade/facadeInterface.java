@@ -30,4 +30,6 @@ public interface facadeInterface {
     public Company getCompany(Long id);
     public List<Company> getCompanies();
     public Company editCompany(Company company);
+    
+    public List<String> getCompletePerson(long id);
 }

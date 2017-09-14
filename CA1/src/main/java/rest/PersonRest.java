@@ -60,8 +60,6 @@ public class PersonRest
         String json = new Gson().toJson(p);
         return json;
     } // returns person from database as json object
-
-    
     
     
     @POST
