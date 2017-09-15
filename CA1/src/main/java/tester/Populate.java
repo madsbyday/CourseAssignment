@@ -28,51 +28,13 @@ public class Populate
         EntityManagerFactory emfn = Persistence.createEntityManagerFactory("CAPU");
         EntityManager em = emfn.createEntityManager();
 
-//        try {
-//            em.getTransaction().begin();
-//            em.persist(p1);
-//            em.getTransaction().commit();
-//        } finally {
-//            em.close();
-//       }
-//        List<Hobby> hobbies = null;
-//
-//        Query query = null;
-//
-//        try
-//        {
-//            em.getTransaction().begin();
-//
-//            query = em.createQuery("SELECT h FROM Hobby h inner join h.persons person WHERE person.id = " + 1);
-//
-//            hobbies = (List<Hobby>) query.getResultList();
-//
-//            for (int i = 0; i < hobbies.size(); i++)
-//            {
-//                System.out.println(hobbies.get(i).getName());
-//            }
-//        } finally
-//        {
-//            em.close();
-//        }
-
-        Person p;
-
-        long id = 1;
         try {
-            p = em.find(Person.class, id);
+            em.getTransaction().begin();
+            em.persist(p1);
+            em.getTransaction().commit();
         } finally {
             em.close();
-        }
-
-        System.out.println(
-        p.toString()
-        );
-        for (int i = 0; i < p.getHobbys().size(); i++)
-        {
-            System.out.println(p.getHobbys().get(i).getName());
-            System.out.println(p.getHobbys().get(i).getDescription());
-        }
+       }
+     
     }
-
 }

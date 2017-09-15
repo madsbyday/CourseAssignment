@@ -5,7 +5,7 @@
  */
 package rest;
 
-import Facade.facadeImpl;
+import Facade.FacadeImpl;
 import converter.JSONConverter;
 import entity.Person;
 import javax.persistence.Persistence;
@@ -42,7 +42,8 @@ public class PersonRest
     @Context
     private UriInfo context;
 
-    private facadeInterface f = new facadeImpl();
+    private facadeInterface f = new FacadeImpl();
+    PersonWhole pw = new PersonWhole();
     
 
     public PersonRest()
@@ -60,13 +61,7 @@ public class PersonRest
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonId(@PathParam("id") long id)
     {
-
-        Person p = f.getPerson(id);
-        p.setHobbys(null);
-        List<Hobby> hobbies = f.getHobbiesByPerson(p.getId());
-        String json = new Gson().toJson(p);
-        String jsonList = new Gson().toJson(hobbies);
-        return json + jsonList;
+        return pw.getWholePerson(id);
     } // returns person from database as json object
 
     @POST
