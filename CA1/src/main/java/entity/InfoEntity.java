@@ -32,9 +32,10 @@ public abstract class InfoEntity implements Serializable {
     
     private String email;
 
-    public InfoEntity(String email)
+    public InfoEntity(String email, Address address)
     {
         this.email = email;
+        this.address = address;
     }
 
     public InfoEntity()

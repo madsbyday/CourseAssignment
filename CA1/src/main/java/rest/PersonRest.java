@@ -71,6 +71,7 @@ public class PersonRest {
         String firstName = null;
         String lastName = null;
         String mail = null;
+        String address = null;
 
         if (body.has("firstName"))
         {
@@ -85,7 +86,7 @@ public class PersonRest {
             mail = body.get("email").getAsString();
         }
 
-        Person p = new Person(null, firstName, lastName, mail);
+        Person p = new Person(firstName, lastName, mail, address);
         f.addPerson(p);
 
         String json = new Gson().toJson(p);
