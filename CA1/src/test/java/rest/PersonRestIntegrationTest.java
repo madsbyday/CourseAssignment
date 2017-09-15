@@ -66,7 +66,8 @@ public class PersonRestIntegrationTest {
         System.out.println("createPerson");
         //Making a new person
         List<Hobby> hobbys = null;
-        Person postedPerson = new Person("Sofia", "Petersen", "Sofia@gmail.com");
+        Address a = new Address("Test", "TEAETTAEA");
+        Person postedPerson = new Person("Sofia", "Petersen", "Sofia@gmail.com", a);
         Person newPerson = given()
                         .contentType(ContentType.JSON)
                         .body(postedPerson)
@@ -82,7 +83,8 @@ public class PersonRestIntegrationTest {
         
         //Making a new person
         List<Hobby> hobbys = null;
-        Person postedPerson = new Person("William", "Thomsen", "William@gmail.com");
+        Address a = new Address("Test", "TEAETTAEA");
+        Person postedPerson = new Person("William", "Thomsen", "William@gmail.com", a);
         String js = JSONConverter.getJSONFromPerson(postedPerson);
         Person newPerson = given()
                         .contentType(ContentType.JSON)
@@ -106,8 +108,8 @@ public class PersonRestIntegrationTest {
         System.out.println("deletePerson");
         //Making a new person
         List<Hobby> hobbys = null;
-        Address a = new Address("Test", "")
-        Person postedPerson = new Person("Anna", "Rasmussen", "Anna@gmail.com");
+        Address a = new Address("Test", "TEAETTAEA");
+        Person postedPerson = new Person("Anna", "Rasmussen", "Anna@gmail.com", a);
         Person newPerson = given()
                         .contentType(ContentType.JSON)
                         .body(postedPerson)
