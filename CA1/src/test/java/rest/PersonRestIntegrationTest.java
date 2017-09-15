@@ -6,6 +6,7 @@
 package rest;
 
 import converter.JSONConverter;
+import entity.Address;
 import entity.Hobby;
 import entity.Person;
 import io.restassured.RestAssured;
@@ -65,7 +66,7 @@ public class PersonRestIntegrationTest {
         System.out.println("createPerson");
         //Making a new person
         List<Hobby> hobbys = null;
-        Person postedPerson = new Person(hobbys, "Sofia", "Petersen", "Sofia@gmail.com");
+        Person postedPerson = new Person("Sofia", "Petersen", "Sofia@gmail.com");
         Person newPerson = given()
                         .contentType(ContentType.JSON)
                         .body(postedPerson)
@@ -81,7 +82,8 @@ public class PersonRestIntegrationTest {
         
         //Making a new person
         List<Hobby> hobbys = null;
-        Person postedPerson = new Person(hobbys, "William", "Thomsen", "William@gmail.com");
+        Person postedPerson = new Person("William", "Thomsen", "William@gmail.com");
+        String js = JSONConverter.getJSONFromPerson(postedPerson);
         Person newPerson = given()
                         .contentType(ContentType.JSON)
                         .body(postedPerson)
@@ -104,7 +106,8 @@ public class PersonRestIntegrationTest {
         System.out.println("deletePerson");
         //Making a new person
         List<Hobby> hobbys = null;
-        Person postedPerson = new Person(hobbys, "Anna", "Rasmussen", "Anna@gmail.com");
+        Address a = new Address("Test", "")
+        Person postedPerson = new Person("Anna", "Rasmussen", "Anna@gmail.com");
         Person newPerson = given()
                         .contentType(ContentType.JSON)
                         .body(postedPerson)

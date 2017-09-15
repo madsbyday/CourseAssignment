@@ -21,6 +21,11 @@ public class test {
         
         puproperties.remove("javax.persistence.sql-load-script-source");
         Persistence.generateSchema("CAPU", puproperties);
+        
+        Generate g = new Generate();
+        g.addPersonToDatabase();
+        g.addPersonToDatabase();
+        
     }
     
 }

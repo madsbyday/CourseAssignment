@@ -21,11 +21,19 @@ public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private String street;
     private String additionalInfo;
+
+    public Address(String street, String additionalInfo) {
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+    }
+    
+    public Address(){
+    }
     
     @ManyToOne
     private CityInfo cityInfo;
@@ -38,6 +46,37 @@ public class Address implements Serializable {
         this.id = id;
     }
 
+    public String getStreet()
+    {
+        return street;
+    }
+
+    public void setStreet(String street)
+    {
+        this.street = street;
+    }
+
+    public String getAdditionalInfo()
+    {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo)
+    {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public CityInfo getCityInfo()
+    {
+        return cityInfo;
+    }
+
+    public void setCityInfo(CityInfo cityInfo)
+    {
+        this.cityInfo = cityInfo;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;

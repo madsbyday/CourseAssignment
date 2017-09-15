@@ -35,13 +35,25 @@ public abstract class InfoEntity implements Serializable {
     @OneToMany(mappedBy = "infoEntity")
     private List<Phone> phones;
 
-    public InfoEntity(String email)
+    public InfoEntity(String email, Address address)
     {
+        this.address = address;
         this.email = email;
     }
 
     public InfoEntity()
     {
+        
+    }
+    
+    public Address getAddress()
+    {
+        return address;
+    }
+
+    public void setAddress(Address address)
+    {
+        this.address = address;
     }
     
     
