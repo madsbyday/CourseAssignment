@@ -39,6 +39,17 @@ public abstract class InfoEntity implements Serializable {
 
     public InfoEntity()
     {
+        
+    }
+
+    public Address getAddress()
+    {
+        return address;
+    }
+
+    public void setAddress(Address address)
+    {
+        this.address = address;
     }
     
     

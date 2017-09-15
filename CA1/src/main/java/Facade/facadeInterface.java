@@ -6,6 +6,7 @@
 package Facade;
 
 import entity.Company;
+import entity.Hobby;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -30,4 +31,6 @@ public interface facadeInterface {
     public Company getCompany(Long id);
     public List<Company> getCompanies();
     public Company editCompany(Company company);
+    
+    public List<Hobby> getHobbiesByPerson(long id);
 }

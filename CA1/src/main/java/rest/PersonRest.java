@@ -20,11 +20,15 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import Facade.facadeInterface;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import entity.Hobby;
+import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import jdk.nashorn.internal.parser.JSONParser;
+import jsonmapper.PersonWhole;
 
 /**
  * REST Web Service
@@ -38,6 +42,7 @@ public class PersonRest {
     private UriInfo context;
 
     private facadeInterface f = new facadeImpl();
+    
 
     public PersonRest() {
         f.addEntityManagerFactory(Persistence.createEntityManagerFactory("CAPU"));
@@ -47,12 +52,16 @@ public class PersonRest {
     @Path("complete/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonId(@PathParam("id") Long id) {
+    public String getPersonId(@PathParam("id") long id)
+    {
 
         Person p = f.getPerson(id);
+        p.setHobbys(null);
+        List<Hobby> hobbies = f.getHobbiesByPerson(p.getId());
         String json = new Gson().toJson(p);
-        return json;
-    }
+        String jsonList = new Gson().toJson(hobbies);
+        return json + jsonList;
+    } // returns person from database as json object
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -63,13 +72,16 @@ public class PersonRest {
         String lastName = null;
         String mail = null;
 
-        if (body.has("firstName")) {
+        if (body.has("firstName"))
+        {
             firstName = body.get("firstName").getAsString();
         }
-        if (body.has("lastName")) {
+        if (body.has("lastName"))
+        {
             lastName = body.get("lastName").getAsString();
         }
-        if (body.has("email")) {
+        if (body.has("email"))
+        {
             mail = body.get("email").getAsString();
         }
 
@@ -84,17 +96,20 @@ public class PersonRest {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String editPerson(String content, @PathParam("id") Long id) {
+    public String editPerson(String content, @PathParam("id") Long id)
+    {
         JsonObject body = new JsonParser().parse(content).getAsJsonObject();
         Person p = f.getPerson(id);
 
         if (body.has("firstName")) {
             p.setFirstName(body.get("firstName").getAsString());
         }
-        if (body.has("lastName")) {
+        if (body.has("lastName"))
+        {
             p.setLastName(body.get("lastName").getAsString());
         }
-        if (body.has("email")) {
+        if (body.has("email"))
+        {
             p.setEmail(body.get("email").getAsString());
         }
 
@@ -106,7 +121,8 @@ public class PersonRest {
 
     @Path("{id}")
     @DELETE
-    public void deletePerson(@PathParam("id") long id) {
+    public void deletePerson(@PathParam("id") long id)
+    {
         f.deletePerson(id);
     }
 }

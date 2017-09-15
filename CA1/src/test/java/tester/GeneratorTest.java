@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Alexander
+ * @author vfgya_000
  */
 public class GeneratorTest {
     
@@ -36,13 +36,12 @@ public class GeneratorTest {
     @After
     public void tearDown() {
     }
-
     @Test
     public void testGeneratePersons() {
         System.out.println("generatePersons");
         int idBegin = 1;
         int amount = 20;
-        Generator instance = new Generator();
+        Generate instance = new Generate();
         String result = instance.generatePersons(idBegin, amount);
         System.out.println(result);
         assertTrue(true);
@@ -54,7 +53,7 @@ public class GeneratorTest {
         System.out.println("generateCompany");
         int idBegin = 30;
         int amount = 20;
-        Generator instance = new Generator();
+        Generate instance = new Generate();
         String result = instance.generateCompany(idBegin, amount);
         System.out.println(result);    
         assertTrue(true);
