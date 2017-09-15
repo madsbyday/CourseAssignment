@@ -1,17 +1,22 @@
 package Facade;
 
+import entity.Address;
 import entity.Company;
+import entity.Hobby;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 public class facadeImpl implements facadeInterface {
 
     EntityManagerFactory emf;
 
     public facadeImpl() {
-    };
+    }
+
+    ;
 
     @Override
     public void addEntityManagerFactory(EntityManagerFactory emf) {
@@ -168,7 +173,7 @@ public class facadeImpl implements facadeInterface {
         }
 
         return c;
-    
+
     }
 
     @Override
@@ -179,7 +184,7 @@ public class facadeImpl implements facadeInterface {
 
         try {
             em.getTransaction().begin();
-            c = em.find(Company.class, company.getId() );
+            c = em.find(Company.class, company.getId());
             if (c != null) {
                 c = company;
                 em.merge(c);
@@ -190,7 +195,22 @@ public class facadeImpl implements facadeInterface {
         }
 
         return c;
-    
+
+    }
+
+    @Override
+    public Address addAddress(Address a) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.persist(a);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+
+        return a;
     }
 
 }
