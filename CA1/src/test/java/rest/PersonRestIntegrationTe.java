@@ -22,9 +22,9 @@ import static org.junit.Assert.*;
  *
  * @author Alexander
  */
-public class PersonRestIntegrationTest {
+public class PersonRestIntegrationTe {
 
-    public PersonRestIntegrationTest() {
+    public PersonRestIntegrationTe() {
     }
 
     @BeforeClass

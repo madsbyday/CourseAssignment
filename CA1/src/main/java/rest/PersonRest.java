@@ -72,7 +72,7 @@ public class PersonRest {
         String firstName = null;
         String lastName = null;
         String mail = null;
-        String address = null;
+        
 
         if (body.has("firstName"))
         {

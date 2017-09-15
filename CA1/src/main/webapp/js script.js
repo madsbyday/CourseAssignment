@@ -10,7 +10,7 @@ getPerson.onclick = function (e) {
     prom.then(function (response) {
         return response.json();
     }).then(function (json) {
-        printGetPerson.innerHTML = json.firstName;
+        printGetPerson.innerHTML = "Name: " + json.firstName + " " + json.lastName + ", Email: " + json.email + ", id: " + json.id + json.address.street;
 
     });
 }
