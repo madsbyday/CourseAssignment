@@ -40,6 +40,7 @@ public abstract class InfoEntity implements Serializable {
     {
         this.address = address;
         this.email = email;
+        this.address = address;
     }
 
     public InfoEntity()

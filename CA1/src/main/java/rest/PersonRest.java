@@ -37,8 +37,7 @@ import jsonmapper.PersonWhole;
  * @author Sanox
  */
 @Path("person")
-public class PersonRest
-{
+public class PersonRest {
 
     @Context
     private UriInfo context;
@@ -46,16 +45,11 @@ public class PersonRest
     private facadeInterface f = new facadeImpl();
     
 
-    public PersonRest()
-    {
+    public PersonRest() {
         f.addEntityManagerFactory(Persistence.createEntityManagerFactory("CAPU"));
     }
 
-    /**
-     * Retrieves representation of an instance of rest.PersonRest
-     *
-     * @return an instance of java.lang.String
-     */
+  
     @Path("complete/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -73,12 +67,12 @@ public class PersonRest
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String createPerson(String content)
-    {
+    public String createPerson(String content) {
         JsonObject body = new JsonParser().parse(content).getAsJsonObject();
         String firstName = null;
         String lastName = null;
         String mail = null;
+        String address = null;
 
         if (body.has("firstName"))
         {
@@ -110,8 +104,7 @@ public class PersonRest
         JsonObject body = new JsonParser().parse(content).getAsJsonObject();
         Person p = f.getPerson(id);
 
-        if (body.has("firstName"))
-        {
+        if (body.has("firstName")) {
             p.setFirstName(body.get("firstName").getAsString());
         }
         if (body.has("lastName"))

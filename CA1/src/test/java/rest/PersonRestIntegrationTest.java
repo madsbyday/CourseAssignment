@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rest;
 
 import converter.JSONConverter;
@@ -36,7 +31,7 @@ public class PersonRestIntegrationTest {
     public static void setUpClass() {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = 8080;
-        RestAssured.basePath = "/CA1";
+        RestAssured.basePath = "/CA1/";
         RestAssured.defaultParser = Parser.JSON;
     }
 
