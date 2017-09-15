@@ -5,7 +5,7 @@
  */
 package jsonmapper;
 
-import Facade.FacadeImpl;
+import Facade.facadeImpl;
 import Facade.facadeInterface;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -22,7 +22,7 @@ import javax.persistence.Persistence;
  */
 public class PersonWhole {
 
-    facadeInterface f = new FacadeImpl();
+    facadeInterface f = new facadeImpl();
 
     public PersonWhole() {
         f.addEntityManagerFactory(Persistence.createEntityManagerFactory("CAPU"));

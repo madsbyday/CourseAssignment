@@ -5,7 +5,7 @@
  */
 package rest;
 
-import Facade.FacadeImpl;
+import Facade.facadeImpl;
 import converter.JSONConverter;
 import entity.Person;
 import javax.persistence.Persistence;
@@ -42,7 +42,7 @@ public class PersonRest
     @Context
     private UriInfo context;
 
-    private facadeInterface f = new FacadeImpl();
+    private facadeInterface f = new facadeImpl();
     PersonWhole pw = new PersonWhole();
     
 
