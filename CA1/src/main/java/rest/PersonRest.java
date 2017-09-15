@@ -32,50 +32,37 @@ import jdk.nashorn.internal.parser.JSONParser;
  * @author Sanox
  */
 @Path("person")
-public class PersonRest
-{
+public class PersonRest {
 
     @Context
     private UriInfo context;
 
     private facadeInterface f = new facadeImpl();
 
-    public PersonRest()
-    {
+    public PersonRest() {
         f.addEntityManagerFactory(Persistence.createEntityManagerFactory("CAPU"));
     }
 
-    /**
-     * Retrieves representation of an instance of rest.PersonRest
-     *
-     * @return an instance of java.lang.String
-     */
+  
     @Path("complete/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonId(@PathParam("id") Long id)
-    {
+    public String getPersonId(@PathParam("id") Long id) {
 
         Person p = f.getPerson(id);
         String json = new Gson().toJson(p);
         return json;
     }
 
-    /**
-     * PUT method for updating or creating an instance of PersonRest
-     *
-     * @param content representation for the resource
-     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String createPerson(String content)
-    {
+    public String createPerson(String content) {
         JsonObject body = new JsonParser().parse(content).getAsJsonObject();
         String firstName = null;
         String lastName = null;
         String mail = null;
-        
+
         if (body.has("firstName")) {
             firstName = body.get("firstName").getAsString();
         }
@@ -85,14 +72,14 @@ public class PersonRest
         if (body.has("email")) {
             mail = body.get("email").getAsString();
         }
-        
+
         Person p = new Person(null, firstName, lastName, mail);
         f.addPerson(p);
-        
+
         String json = new Gson().toJson(p);
         return json;
     }
-    
+
     @Path("complete/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
@@ -100,7 +87,7 @@ public class PersonRest
     public String editPerson(String content, @PathParam("id") Long id) {
         JsonObject body = new JsonParser().parse(content).getAsJsonObject();
         Person p = f.getPerson(id);
-        
+
         if (body.has("firstName")) {
             p.setFirstName(body.get("firstName").getAsString());
         }
@@ -110,13 +97,13 @@ public class PersonRest
         if (body.has("email")) {
             p.setEmail(body.get("email").getAsString());
         }
-        
+
         f.editPerson(p);
-        
+
         String json = new Gson().toJson(p);
         return json;
     }
-    
+
     @Path("{id}")
     @DELETE
     public void deletePerson(@PathParam("id") long id) {
