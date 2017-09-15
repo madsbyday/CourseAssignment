@@ -3,6 +3,7 @@ package Facade;
 import entity.Company;
 import entity.Hobby;
 import entity.Person;
+import entity.Phone;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,7 +14,9 @@ public class facadeImpl implements facadeInterface {
     EntityManagerFactory emf;
 
     public facadeImpl() {
-    };
+    }
+
+    ;
 
     @Override
     public void addEntityManagerFactory(EntityManagerFactory emf) {
@@ -170,7 +173,7 @@ public class facadeImpl implements facadeInterface {
         }
 
         return c;
-    
+
     }
 
     @Override
@@ -181,7 +184,7 @@ public class facadeImpl implements facadeInterface {
 
         try {
             em.getTransaction().begin();
-            c = em.find(Company.class, company.getId() );
+            c = em.find(Company.class, company.getId());
             if (c != null) {
                 c = company;
                 em.merge(c);
@@ -192,29 +195,30 @@ public class facadeImpl implements facadeInterface {
         }
 
         return c;
-    
+
     }
 
-    @Override
-    public List<Hobby> getHobbiesByPerson(long id)
-    {
+
+@Override
+        public List<Phone> getPhonesByPerson(long id) {
         EntityManager em = emf.createEntityManager();
         
-        List<Hobby> hobbies = null;
+        List<Phone> phones = null;
         
         Query query = null;
         
         try {
             em.getTransaction().begin();
             
-            query = em.createQuery("SELECT h FROM Hobby h inner join h.persons person WHERE person.id = " + 1);
+            query = em.createQuery("SELECT p FROM Phone p WHERE p.infoEntity.id = " + id);
+            phones = (List<Phone>)query.getResultList();
             
-            return hobbies;
+            return phones;
+
         }
         finally {
             em.close();
         }
-    }
-
+        }
 
 }
