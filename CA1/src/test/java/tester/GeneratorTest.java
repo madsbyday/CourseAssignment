@@ -52,7 +52,7 @@ public class GeneratorTest {
     public void testGenerateCompany() {
         System.out.println("generateCompany");
         int idBegin = 30;
-        int amount = 20;
+        int amount = 10;
         Generate instance = new Generate();
         String result = instance.generateCompany(idBegin, amount);
         System.out.println(result);    

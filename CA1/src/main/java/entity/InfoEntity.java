@@ -31,6 +31,9 @@ public abstract class InfoEntity implements Serializable {
     private Long id;
     
     private String email;
+    
+    @OneToMany(mappedBy = "infoEntity")
+    private List<Phone> phones;
 
     public InfoEntity(String email)
     {
