@@ -1,9 +1,11 @@
 package Facade;
 
 import entity.Address;
+import entity.CityInfo;
 import entity.Company;
 import entity.Hobby;
 import entity.Person;
+import entity.Phone;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -213,5 +215,34 @@ public class facadeImpl implements facadeInterface {
         return a;
     }
 
+    @Override
+    public Phone addPhone(Phone p) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.persist(p);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+
+        return p;
+    }
+
+    @Override
+    public CityInfo getCityInfo(Long id) {
+        EntityManager em = emf.createEntityManager();
+
+        CityInfo ci;
+
+        try {
+            ci = em.find(CityInfo.class, id);
+        } finally {
+            em.close();
+        }
+
+        return ci;
+    }
 
 }
