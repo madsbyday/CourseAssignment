@@ -64,6 +64,13 @@ public class PersonRest
         return pw.getWholePerson(id);
     } // returns person from database as json object
 
+    @Path("complete")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getpersons() {
+        return pw.getAllPersonWhole();
+    }
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
