@@ -8,9 +8,15 @@ package tester;
 import Facade.facadeImpl;
 import Facade.facadeInterface;
 import entity.Address;
+import entity.CityInfo;
 import entity.Company;
+import entity.InfoEntity;
 import entity.Person;
+import entity.Phone;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.persistence.Persistence;
 
 /**
@@ -48,6 +54,62 @@ public class Generate {
 
     String[] phoneDesc = {"Mobil", "Home", "Office", "Sale", "Help"};
 
+    public void addPersonToDatabase() {
+        String firstName = firstNames[rnd.nextInt(firstNames.length)];
+        String lastName = lastNames[rnd.nextInt(firstNames.length)];
+        String email = firstName + "@gmail.com";
+        String street = (rnd.nextInt(250) + 1) + ". " + lastNames[rnd.nextInt(lastNames.length)] + " " + streetEnd[rnd.nextInt(streetEnd.length)];
+        
+        
+        Address a = new Address(street, streetDesc[0], f.getCityInfo(ThreadLocalRandom.current().nextLong(1354)));
+        Person pers = new Person(firstName, lastName, email, f.addAddress(a));
+        
+        String number = "" + (rnd.nextInt(90000000) + 10000000);
+        
+        Phone p = new Phone(number, phoneDesc[rnd.nextInt(2)]);
+        f.addPhone(p);
+        
+        f.addPerson(pers);
+    }
+
+    public void addCompanyToDatabase() {
+        String cvr = "" + (rnd.nextInt(90000) + 10000) + "";
+        String gen1 = companyGen1[rnd.nextInt(companyGen1.length)];
+        String gen2 = companyGen2[rnd.nextInt(companyGen2.length)];
+        String gen3 = companyGen3[rnd.nextInt(companyGen3.length)];
+        String name = gen1 + gen2 + gen3;
+        String desc = companyDesc[rnd.nextInt(companyDesc.length)];
+        int numEmployees = rnd.nextInt(100) + 1;
+
+        String email = makeCompanyEmail(gen1, gen2, gen3);
+
+        String street = (rnd.nextInt(250) + 1) + ". " + lastNames[rnd.nextInt(lastNames.length)] + " " + streetEnd[rnd.nextInt(streetEnd.length)];
+        
+        Address a = new Address(street, streetDesc[1], f.getCityInfo(ThreadLocalRandom.current().nextLong(1354)));
+        Company c = new Company(cvr, name, desc, numEmployees, rnd.nextDouble() * 1000.0, email, f.addAddress(a));
+        
+        String number = "" + (rnd.nextInt(90000000) + 10000000);
+
+        Phone p = new Phone(number, phoneDesc[rnd.nextInt(3) + 2]);
+        f.addPhone(p);
+        
+        f.addCompany(c);
+    }
+
+    public String makeCompanyEmail(String gen1, String gen2, String gen3) {
+        String email = "info@" + gen1;
+        if (!gen2.equalsIgnoreCase(" ") && !gen2.equalsIgnoreCase(" & ") && !gen2.equalsIgnoreCase("!")) {
+            email += gen2;
+        }
+        if (!gen3.equalsIgnoreCase("...") && !gen3.equalsIgnoreCase("!") && !gen3.equalsIgnoreCase(" A/S") && !gen3.equalsIgnoreCase("$")) {
+            email += gen3;
+        }
+        return email + ".dk";
+    }
+
+    /* GENERATE SQL STRING FOR PERSON AND COMPANY 
+    ***DOES NOT WORK DUE TO MISMATCH OF ID'S***
+    
     public String generatePersons(int idBegin, int amount) {
         String insert;
         String result = "";
@@ -111,46 +173,5 @@ public class Generate {
         }
         return result;
     }
-
-    public String makeEmail(String gen1, String gen2, String gen3) {
-        String email = "info@" + gen1;
-        if (!gen2.equalsIgnoreCase(" ") && !gen2.equalsIgnoreCase(" & ") && !gen2.equalsIgnoreCase("!")) {
-            email += gen2;
-        }
-        if (!gen3.equalsIgnoreCase("...") && !gen3.equalsIgnoreCase("!") && !gen3.equalsIgnoreCase(" A/S") && !gen3.equalsIgnoreCase("$")) {
-            email += gen3;
-        }
-        return email + ".dk";
-    }
-
-    public void addPersonToDatabase() {
-        String firstName = firstNames[rnd.nextInt(firstNames.length)];
-        String lastName = lastNames[rnd.nextInt(firstNames.length)];
-        String email = firstName + "@gmail.com";
-        String street = lastNames[rnd.nextInt(lastNames.length)] + " " + streetEnd[rnd.nextInt(streetEnd.length)];
-        
-        Address a = new Address(street, streetDesc[0]);
-        Person p = new Person(firstName, lastName, email, f.addAddress(a));
-        f.addPerson(p);
-  
-    }
-
-    public void addCompanyToDatabase() {
-        String cvr = "" + (rnd.nextInt(90000) + 10000) + "";
-        String gen1 = companyGen1[rnd.nextInt(companyGen1.length)];
-        String gen2 = companyGen2[rnd.nextInt(companyGen2.length)];
-        String gen3 = companyGen3[rnd.nextInt(companyGen3.length)];
-        String name = gen1 + gen2 + gen3;
-        String desc = companyDesc[rnd.nextInt(companyDesc.length)];
-        int numEmployees = rnd.nextInt(100) + 1;
-
-        String email = makeEmail(gen1, gen2, gen3);
-
-        String street = lastNames[rnd.nextInt(lastNames.length)] + " " + streetEnd[rnd.nextInt(streetEnd.length)];
-        Address a = new Address(street, streetDesc[0]);
-        
-        Company c = new Company(cvr, name, desc, numEmployees, rnd.nextDouble() * 1000.0, email, f.addAddress(a));
-        f.addCompany(c);
-    }
-
+     */
 }

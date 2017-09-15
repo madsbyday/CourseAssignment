@@ -93,7 +93,7 @@ public class PersonRest
             mail = body.get("email").getAsString();
         }
         
-        Address a = new Address("geg", "fefa"); // Rework
+        Address a = new Address("geg", "fefa"); // Mangler CityInfo
         Person p = new Person(firstName, lastName, mail, a);
         f.addPerson(p);
 

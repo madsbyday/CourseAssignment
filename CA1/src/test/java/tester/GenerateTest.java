@@ -14,11 +14,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author vfgya_000
+ * @author Alexander
  */
-public class GeneratorTest {
+public class GenerateTest {
     
-    public GeneratorTest() {
+    public GenerateTest() {
     }
     
     @BeforeClass
@@ -36,27 +36,17 @@ public class GeneratorTest {
     @After
     public void tearDown() {
     }
-    @Test
-    public void testGeneratePersons() {
-        System.out.println("generatePersons");
-        int idBegin = 1;
-        int amount = 20;
-        Generate instance = new Generate();
-        String result = instance.generatePersons(idBegin, amount);
-        System.out.println(result);
-        assertTrue(true);
-    }
-
 
     @Test
-    public void testGenerateCompany() {
-        System.out.println("generateCompany");
-        int idBegin = 30;
-        int amount = 10;
+    public void testMakeCompanyEmail() {
+        System.out.println("makeCompanyEmail");
+        String gen1 = "test";
+        String gen2 = " & ";
+        String gen3 = "mail";
         Generate instance = new Generate();
-        String result = instance.generateCompany(idBegin, amount);
-        System.out.println(result);    
-        assertTrue(true);
+        String expResult = "info@testmail.dk";
+        String result = instance.makeCompanyEmail(gen1, gen2, gen3);
+        assertEquals(expResult, result);
     }
     
 }

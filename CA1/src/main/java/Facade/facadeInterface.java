@@ -6,9 +6,11 @@
 package Facade;
 
 import entity.Address;
+import entity.CityInfo;
 import entity.Company;
 import entity.Hobby;
 import entity.Person;
+import entity.Phone;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -34,4 +36,7 @@ public interface facadeInterface {
     public Company editCompany(Company company);
 
     public Address addAddress(Address a);
+    public Phone addPhone(Phone p);
+    
+    public CityInfo getCityInfo(Long id);
 }

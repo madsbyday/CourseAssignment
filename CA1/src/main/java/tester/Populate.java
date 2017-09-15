@@ -24,7 +24,7 @@ public class Populate
     public static void main(String[] args)
     {
         
-        Address a1 = new Address("Hovedvej 1", "Recidential");
+        Address a1 = new Address("Hovedvej 1", "Recidential"); // Mangler CiryInfo
         Person p1 = new Person("Lone", "Lassen", "LL@mail.com", a1);
 
         EntityManagerFactory emfn = Persistence.createEntityManagerFactory("CAPU");
