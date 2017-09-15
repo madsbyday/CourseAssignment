@@ -20,9 +20,10 @@ import javax.persistence.InheritanceType;
 @Entity
 public class Company extends InfoEntity implements Serializable {
 
-    public Company(String name, String description, int numEmployees, double marketValue, String email, Address address)
+    public Company(String cvr, String name, String description, int numEmployees, double marketValue, String email, Address address)
     {
         super(email, address);
+        this.cvr = cvr;
         this.name = name;
         this.description = description;
         this.numEmployees = numEmployees;

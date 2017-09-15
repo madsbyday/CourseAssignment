@@ -1,5 +1,6 @@
 package Facade;
 
+import entity.Address;
 import entity.Company;
 import entity.Hobby;
 import entity.Person;
@@ -13,7 +14,9 @@ public class facadeImpl implements facadeInterface {
     EntityManagerFactory emf;
 
     public facadeImpl() {
-    };
+    }
+
+    ;
 
     @Override
     public void addEntityManagerFactory(EntityManagerFactory emf) {
@@ -170,7 +173,7 @@ public class facadeImpl implements facadeInterface {
         }
 
         return c;
-    
+
     }
 
     @Override
@@ -181,7 +184,7 @@ public class facadeImpl implements facadeInterface {
 
         try {
             em.getTransaction().begin();
-            c = em.find(Company.class, company.getId() );
+            c = em.find(Company.class, company.getId());
             if (c != null) {
                 c = company;
                 em.merge(c);
@@ -192,28 +195,22 @@ public class facadeImpl implements facadeInterface {
         }
 
         return c;
-    
+
     }
 
     @Override
-    public List<Hobby> getHobbiesByPerson(long id)
-    {
+    public Address addAddress(Address a) {
         EntityManager em = emf.createEntityManager();
-        
-        List<Hobby> hobbies = null;
-        
-        Query query = null;
-        
+
         try {
             em.getTransaction().begin();
-            
-            query = em.createQuery("SELECT h FROM Hobby h inner join h.persons person WHERE person.id = " + 1);
-            
-            return hobbies;
-        }
-        finally {
+            em.persist(a);
+            em.getTransaction().commit();
+        } finally {
             em.close();
         }
+
+        return a;
     }
 
 

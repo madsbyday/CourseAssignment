@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import entity.Address;
 import entity.Hobby;
 import java.util.List;
 import javax.ws.rs.DELETE;
@@ -57,10 +58,10 @@ public class PersonRest {
 
         Person p = f.getPerson(id);
         p.setHobbys(null);
-        List<Hobby> hobbies = f.getHobbiesByPerson(p.getId());
+        //List<Hobby> hobbies = f.getHobbiesByPerson(p.getId());  Removed function
         String json = new Gson().toJson(p);
-        String jsonList = new Gson().toJson(hobbies);
-        return json + jsonList;
+        //String jsonList = new Gson().toJson(hobbies);
+        return json; //+ jsonList;
     } // returns person from database as json object
 
     @POST
@@ -85,8 +86,9 @@ public class PersonRest {
         {
             mail = body.get("email").getAsString();
         }
-
-        Person p = new Person(firstName, lastName, mail, address);
+        
+        Address a = new Address("geg", "fefa"); // Rework
+        Person p = new Person(firstName, lastName, mail, a);
         f.addPerson(p);
 
         String json = new Gson().toJson(p);

@@ -1,6 +1,7 @@
 package rest;
 
 import converter.JSONConverter;
+import entity.Address;
 import entity.Hobby;
 import entity.Person;
 import io.restassured.RestAssured;
@@ -60,7 +61,8 @@ public class PersonRestIntegrationTest {
         System.out.println("createPerson");
         //Making a new person
         List<Hobby> hobbys = null;
-        Person postedPerson = new Person("Sofia", "Petersen", "Sofia@gmail.com");
+        Address a = new Address("Test", "TEAETTAEA");
+        Person postedPerson = new Person("Sofia", "Petersen", "Sofia@gmail.com", a);
         Person newPerson = given()
                         .contentType(ContentType.JSON)
                         .body(postedPerson)
@@ -76,31 +78,33 @@ public class PersonRestIntegrationTest {
         
         //Making a new person
         List<Hobby> hobbys = null;
-        Person postedPerson = new Person("William", "Thomsen", "William@gmail.com");
+        Address a = new Address("Test", "TEAETTAEA");
+        Person postedPerson = new Person("William", "Thomsen", "William@gmail.com", a);
         String js = JSONConverter.getJSONFromPerson(postedPerson);
         Person newPerson = given()
                         .contentType(ContentType.JSON)
-                        .body(js)
+                        .body(postedPerson)
                         .when().post("/api/person")
                         .as(Person.class);
         
         //See if we can get him
         Person gottenPerson = given()
                 .contentType(ContentType.JSON)
-                .body(js)
+                .body(postedPerson)
                 .when().get("/api/person/complete/" + newPerson.getId()).as(Person.class); 
         
         assertNotNull(gottenPerson.getId());
         assertEquals("William", gottenPerson.getFirstName());
 
     }
-    /*
+ 
     @Test
     public void testDeletePerson() {
         System.out.println("deletePerson");
         //Making a new person
         List<Hobby> hobbys = null;
-        Person postedPerson = new Person(hobbys, "Anna", "Rasmussen", "Anna@gmail.com");
+        Address a = new Address("Test", "TEAETTAEA");
+        Person postedPerson = new Person("Anna", "Rasmussen", "Anna@gmail.com", a);
         Person newPerson = given()
                         .contentType(ContentType.JSON)
                         .body(postedPerson)
@@ -111,7 +115,7 @@ public class PersonRestIntegrationTest {
         Person deletedPerson = given()
         .contentType(ContentType.JSON)
         .when().delete("/api/person/" + newPerson.getId()).as(Person.class);
-        assertEquals("Anna", deletedPerson.getFirstName());
+        assertNull(deletedPerson);
     }
-*/
+    
 }

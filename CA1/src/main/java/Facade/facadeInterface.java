@@ -5,6 +5,7 @@
  */
 package Facade;
 
+import entity.Address;
 import entity.Company;
 import entity.Hobby;
 import entity.Person;
@@ -31,6 +32,6 @@ public interface facadeInterface {
     public Company getCompany(Long id);
     public List<Company> getCompanies();
     public Company editCompany(Company company);
-    
-    public List<Hobby> getHobbiesByPerson(long id);
+
+    public Address addAddress(Address a);
 }

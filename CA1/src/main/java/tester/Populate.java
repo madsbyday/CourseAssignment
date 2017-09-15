@@ -5,6 +5,7 @@
  */
 package tester;
 
+import entity.Address;
 import entity.Hobby;
 import entity.Person;
 import java.util.List;
@@ -22,8 +23,9 @@ public class Populate
 
     public static void main(String[] args)
     {
-
-        Person p1 = new Person("Lone", "Lassen", "LL@mail.com");
+        
+        Address a1 = new Address("Hovedvej 1", "Recidential");
+        Person p1 = new Person("Lone", "Lassen", "LL@mail.com", a1);
 
         EntityManagerFactory emfn = Persistence.createEntityManagerFactory("CAPU");
         EntityManager em = emfn.createEntityManager();

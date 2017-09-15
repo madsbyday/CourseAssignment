@@ -34,8 +34,6 @@ public class Person extends InfoEntity implements Serializable {
         
     }
     
-    
-    
     @ManyToMany(mappedBy = "persons")
     private List<Hobby> hobbys;
     
