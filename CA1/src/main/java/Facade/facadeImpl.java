@@ -46,6 +46,25 @@ public class facadeImpl implements facadeInterface {
     }
 
     @Override
+    public Person getPerson2(Person p) {
+        EntityManager em = emf.createEntityManager();
+
+        Person person;
+
+        try {
+            em.getTransaction().begin();
+            person = em.find(Person.class, p.getId());
+            if (person != null) {
+                person = p;
+            }
+        } finally {
+            em.close();
+        }
+
+        return person;
+    }
+
+    @Override
     public List<Person> getPersons() {
         EntityManager em = emf.createEntityManager();
 
@@ -122,6 +141,25 @@ public class facadeImpl implements facadeInterface {
 
         try {
             c = em.find(Company.class, id);
+        } finally {
+            em.close();
+        }
+
+        return c;
+    }
+
+    @Override
+    public Company getCompany2(Company company) {
+        EntityManager em = emf.createEntityManager();
+
+        Company c;
+
+        try {
+            em.getTransaction().begin();
+            c = em.find(Company.class, company.getId());
+            if (c != null) {
+                c = company;
+            }
         } finally {
             em.close();
         }
@@ -243,6 +281,21 @@ public class facadeImpl implements facadeInterface {
         }
 
         return ci;
+    }
+
+    @Override
+    public Hobby addHobby(Hobby h) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.persist(h);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+
+        return h;
     }
 
 }
