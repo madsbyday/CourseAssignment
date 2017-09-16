@@ -24,17 +24,24 @@ postPerson.onclick = function (e) {
     console.log(firstName.value);
 
     var body = {
-        "firstName": "test", //firstName.value,
-        "lastName": "test", //lastName.value,
-        "email": "test" //email.value
+        "firstName": firstName.value,
+        "lastName": lastName.value,
+        "email": email.value,
+        "address": {
+            "street": "test",
+            "additionalInfo": "test"
+        }
+
     };
 
-    var data = new FormData();
-    data.append("json", JSON.stringify(body));
-    var prom = fetch("api/person/", { method: "POST", body: data });
-
-    prom.then(function (response) {
-        return response.json();
+    fetch("api/person/", {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+           "Content-Type": "application/json", 
+           'Accept': 'application/json'
+        }
+    
     });
 
 }

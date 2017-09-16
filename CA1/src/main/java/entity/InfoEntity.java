@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -58,7 +59,7 @@ public abstract class InfoEntity implements Serializable {
     }
     
     
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     private Address address;
 
     public Long getId() {
