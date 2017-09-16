@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,7 @@ public abstract class InfoEntity implements Serializable {
     private String email;
     
     //Re evaluate
-    @OneToMany(mappedBy = "infoEntity")
+    @OneToMany(mappedBy = "infoEntity", cascade = CascadeType.PERSIST)
     private List<Phone> phones;
 
     public InfoEntity(String email, Address address)

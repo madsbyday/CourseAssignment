@@ -33,6 +33,15 @@ public class Hobby implements Serializable {
     @ManyToMany
     private List<Person> persons;
 
+    public Hobby(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+    
+    public Hobby(){
+    }
+
     public Long getId() {
         return id;
     }

@@ -24,8 +24,11 @@ public class test {
         Persistence.generateSchema("CAPU", puproperties);
         
         Generate g = new Generate();
-        g.addPersonToDatabase();
-        g.addCompanyToDatabase();
+  
+        g.addPersonToDatabase(); // This function makes 1 person
+        g.addCompanyToDatabase(); // This function makes 1 company
+        
+        g.addHobbiesToDatabase(); // This function makes 50 hobbies
 
     }
     

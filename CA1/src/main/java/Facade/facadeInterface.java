@@ -26,12 +26,14 @@ public interface facadeInterface {
     public Person addPerson(Person p);
     public Person deletePerson(Long id);
     public Person getPerson(Long id);
+    public Person getPerson2(Person p);
     public List<Person> getPersons();
     public Person editPerson(Person p);
 
     public Company addCompany(Company company);
     public Company deleteCompany(Long id);
     public Company getCompany(Long id);
+    public Company getCompany2(Company company);
     public List<Company> getCompanies();
     public Company editCompany(Company company);
 
@@ -39,4 +41,6 @@ public interface facadeInterface {
     public Phone addPhone(Phone p);
     
     public CityInfo getCityInfo(Long id);
+    
+    public Hobby addHobby(Hobby h);
 }

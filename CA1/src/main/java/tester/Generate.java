@@ -10,6 +10,7 @@ import Facade.facadeInterface;
 import entity.Address;
 import entity.CityInfo;
 import entity.Company;
+import entity.Hobby;
 import entity.InfoEntity;
 import entity.Person;
 import entity.Phone;
@@ -59,17 +60,19 @@ public class Generate {
         String lastName = lastNames[rnd.nextInt(firstNames.length)];
         String email = firstName + "@gmail.com";
         String street = (rnd.nextInt(250) + 1) + ". " + lastNames[rnd.nextInt(lastNames.length)] + " " + streetEnd[rnd.nextInt(streetEnd.length)];
-        
-        
+
         Address a = new Address(street, streetDesc[0], f.getCityInfo(ThreadLocalRandom.current().nextLong(1354)));
         Person pers = new Person(firstName, lastName, email, f.addAddress(a));
-        
-        String number = "" + (rnd.nextInt(90000000) + 10000000);
-        
-        Phone p = new Phone(number, phoneDesc[rnd.nextInt(2)]);
-        f.addPhone(p);
-        
+
         f.addPerson(pers);
+
+        int i = 0;
+        while (i <= rnd.nextInt(2)) {
+        String number = "" + (rnd.nextInt(90000000) + 10000000);
+        Phone p = new Phone(number, phoneDesc[rnd.nextInt(2)], f.getPerson2(pers));
+        f.addPhone(p);
+        }
+
     }
 
     public void addCompanyToDatabase() {
@@ -84,16 +87,18 @@ public class Generate {
         String email = makeCompanyEmail(gen1, gen2, gen3);
 
         String street = (rnd.nextInt(250) + 1) + ". " + lastNames[rnd.nextInt(lastNames.length)] + " " + streetEnd[rnd.nextInt(streetEnd.length)];
-        
+
         Address a = new Address(street, streetDesc[1], f.getCityInfo(ThreadLocalRandom.current().nextLong(1354)));
         Company c = new Company(cvr, name, desc, numEmployees, rnd.nextDouble() * 1000.0, email, f.addAddress(a));
-        
-        String number = "" + (rnd.nextInt(90000000) + 10000000);
 
-        Phone p = new Phone(number, phoneDesc[rnd.nextInt(3) + 2]);
-        f.addPhone(p);
-        
         f.addCompany(c);
+
+        int i = 0;
+        while (i <= rnd.nextInt(5)){
+        String number = "" + (rnd.nextInt(90000000) + 10000000);
+        Phone p = new Phone(number, phoneDesc[rnd.nextInt(3) + 2], f.getCompany2(c));
+        f.addPhone(p);
+        }
     }
 
     public String makeCompanyEmail(String gen1, String gen2, String gen3) {
@@ -107,6 +112,27 @@ public class Generate {
         return email + ".dk";
     }
 
+    public void addHobbiesToDatabase(){
+        String[] hobbies = {"Reading", "Watching TV", "Family Time", "Going to Movies", "Fishing", "Computer", "Gardening", "Renting Movies",
+            "Walking", "Exercise", "Listening to Music", "Entertaining", "Hunting", "Team Sports", "Shopping", "Traveling", "Sleeping", "Socializing",
+            "Sewing", "Golf", "Church Activities", "Relaxing", "Playing Music", "Housework Crafts", "Watching Sports", "Bicycling", "Playing Cards", 
+            "Hiking", "Cooking", "Eating Out", "Dating Online", "Swimming", "Camping", "Skiing", "Working on Cars", "Writing", "Boating", "Motorcycling",
+            "Animal Care", "Bowling", "Painting", "Running", "Dancing", "Horseback", "Riding", "Tennis", "Theater", "Billiards", "Beach", "Volunteer Work"};
+        
+        String[] desc = {"beautiful", "best", "brilliant", "epic", "essential", "excellent", "fails", "fantastic", "free", "gorgeous", "great", "horrific", 
+            "horrifying", "important", "inspiring", "kickass", "killer", "funny", "lousy", "mindblowing", "relaxing", "persuasive", "simple", "successful", 
+            "ultimate", "useful", "valuable", "luminous", "ruminative", "turbulent", "strident", "antic", "amatory", "adroit", "judicious", "zealous"};
+        
+        int i = 0;
+        while (i < hobbies.length) {
+            long l = i;
+            Hobby h = new Hobby(l, hobbies[i], desc[rnd.nextInt(desc.length)]);
+            f.addHobby(h);
+            i++;
+        }
+        
+    }
+    
     /* GENERATE SQL STRING FOR PERSON AND COMPANY 
     ***DOES NOT WORK DUE TO MISMATCH OF ID'S***
     
