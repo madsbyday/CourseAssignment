@@ -17,8 +17,6 @@ Clean and Build will run our tests and if it says "BUILD SUCCESS" in the output.
 
 We only have one plain Unit Test which test which is the makeCompanyEmail method in the Generate.java class. It test that the email for a company can't have illigal symbols; ' & ', '!', '...' and so on. 
 
-(FACADE TESTS - JONAS)
-
 Our rest assured tests:
 * testServerIsRunning: which test the connection.
 * testCreatePerson: which test if we can make a person.
@@ -27,14 +25,40 @@ Our rest assured tests:
 
 All of our test should pass. 
 
+### Rest API
+We have in our project used the rest-api to operate on our database via our facade.
+We have made various methods which uses the get method to produce json objects which we print out on our html sites.
+
+- **getPersonId:** gets an id from a parameter and uses it to produce a json object with a person and all of his/hers information.
+
+- **getpersons:** works almost the same as the previous method only this produces all of the persons in the database.
+
+- **getpersonsByCity:** returns some persons with a given zipcode which it gets from a parameter.
+
+- **getPersonInfoId:** returns a person’s contact information with a given person id from a parameter.
+
+- **getpersonsInfo:** does the same thing as the previous but returns all persons contact information with no given id.
+
+Here we use the post method which is used for creation of objects.
+- **createPerson:** consumes and produces a json object with some data and adds a new person to the database with said data.
+
+The put method is used here to update our database.
+- **editPerson:** consumes and produces a json object with some data and updates a person with the given id to the database with said data.
+
+And at last the delete method which we use to remove from the database.
+- **deletePerson:** deletes a person with a given id which it gets from a parameter.
+
+
 ### Who have done what
 | Class               | Alexander | Jonas | Mads |
 | --------------------|:---------:|:-----:|:----:|
 | demo.html           |           |   X   |   X  |
 | index.html          |           |   X   |      |
 | js_script           |           |   X   |   X  |
+|styleSheet.css       |           |       |   X  |
 |facadeImpl.java      |     X     |   X   |   X  |
 |facadeInterface.java |     X     |   X   |   X  |
+|JSONConverter.java   |           |       |   X  |
 |Address.java         |     X     |       |      |
 |CityInfo.java        |     X     |       |      |
 |Company.java         |           |       |   X  |
