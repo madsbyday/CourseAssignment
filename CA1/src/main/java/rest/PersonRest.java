@@ -43,6 +43,7 @@ public class PersonRest {
     private UriInfo context;
 
     private facadeInterface f = new facadeImpl();
+    PersonWhole pw = new PersonWhole();
     
 
     public PersonRest() {
@@ -55,15 +56,16 @@ public class PersonRest {
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonId(@PathParam("id") long id)
     {
-
-        Person p = f.getPerson(id);
-        p.setHobbys(null);
-        //List<Hobby> hobbies = f.getHobbiesByPerson(p.getId());  Removed function
-        String json = new Gson().toJson(p);
-        //String jsonList = new Gson().toJson(hobbies);
-        return json; //+ jsonList;
+        return pw.getWholePerson(id);
     } // returns person from database as json object
 
+    @Path("complete")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getpersons() {
+        return pw.getAllPersonWhole();
+    }
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

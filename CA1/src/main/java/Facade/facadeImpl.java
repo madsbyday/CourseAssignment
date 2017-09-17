@@ -239,21 +239,6 @@ public class facadeImpl implements facadeInterface {
     }
 
     @Override
-    public Address addAddress(Address a) {
-        EntityManager em = emf.createEntityManager();
-
-        try {
-            em.getTransaction().begin();
-            em.persist(a);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
-
-        return a;
-    }
-
-    @Override
     public Phone addPhone(Phone p) {
         EntityManager em = emf.createEntityManager();
 
@@ -296,6 +281,42 @@ public class facadeImpl implements facadeInterface {
         }
 
         return h;
+    }
+
+    @Override
+    public Address addAddress(Address a) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.persist(a);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+
+        return a;
+    }
+
+    @Override
+    public List<Phone> getPhonesByPerson(long id) {
+        EntityManager em = emf.createEntityManager();
+
+        List<Phone> phones = null;
+
+        Query query = null;
+
+        try {
+            em.getTransaction().begin();
+
+            query = em.createQuery("SELECT p FROM Phone p WHERE p.infoEntity.id = " + id);
+            phones = (List<Phone>) query.getResultList();
+
+            return phones;
+
+        } finally {
+            em.close();
+        }
     }
 
 }

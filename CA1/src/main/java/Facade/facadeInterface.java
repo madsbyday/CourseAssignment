@@ -40,6 +40,7 @@ public interface facadeInterface {
     public Address addAddress(Address a);
     public Phone addPhone(Phone p);
     
+    public List<Phone> getPhonesByPerson(long id);
     public CityInfo getCityInfo(Long id);
     
     public Hobby addHobby(Hobby h);
