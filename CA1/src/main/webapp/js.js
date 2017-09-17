@@ -8,6 +8,10 @@ document.getElementById("UpdatePersonbt").addEventListener("click", function ()
     editPerson();
     PersonsRefresh();
 });
+document.getElementById("postPersonbt").addEventListener("click", function ()
+{
+    postPerson();
+});
 function PersonsRefresh()
 {
     fetch("api/person/complete", {method: "get"})
@@ -83,11 +87,12 @@ function getPerson()
                 });
             });
 }
+
 function editPerson() {
     var person = {
         firstName: document.getElementById("pf").value,
         lastName: document.getElementById("pl").value,
-        email: document.getElementById("pe").value,
+        email: document.getElementById("pe").value
 
     };
     var id = document.getElementById("personid").value;
@@ -96,4 +101,31 @@ function editPerson() {
         body: JSON.stringify(person),
         headers: new Headers({'content-type': 'application/json'})
     })
+}
+    function postPerson() {
+    var firstName = document.querySelector("#pf");
+    var lastName = document.querySelector("#pl");
+    var email = document.querySelector("#pe");
+    var street = document.querySelector("#ps");
+    var info = document.querySelector("#pa");
+    console.log(firstName.value);
+
+    var body = {
+        "firstName": firstName.value,
+        "lastName": lastName.value,
+        "email": email.value,
+        "address": {
+            "street": street.value,
+            "additionalInfo": info.value
+        }
+    };
+    fetch("api/person/", {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            'Accept': 'application/json'
+        }
+
+    });
 }
