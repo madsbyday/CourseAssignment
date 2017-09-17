@@ -37,7 +37,8 @@ import jsonmapper.PersonWhole;
  * @author Sanox
  */
 @Path("person")
-public class PersonRest {
+public class PersonRest
+{
 
     @Context
     private UriInfo context;
@@ -46,11 +47,16 @@ public class PersonRest {
     PersonWhole pw = new PersonWhole();
     
 
-    public PersonRest() {
+    public PersonRest()
+    {
         f.addEntityManagerFactory(Persistence.createEntityManagerFactory("CAPU"));
     }
 
-  
+    /**
+     * Retrieves representation of an instance of rest.PersonRest
+     *
+     * @return an instance of java.lang.String
+     */
     @Path("complete/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -65,18 +71,55 @@ public class PersonRest {
     public String getpersons() {
         return pw.getAllPersonWhole();
     }
+    @Path("complete/city/{city}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getpersonsByCity(@PathParam("city") String zipcode) {
+        return pw.getAllpersonWholeByZip(zipcode);
+    }
+    
+    @Path("contactinfo/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPersonInfoId(@PathParam("id") long id)
+    {
+        return pw.getpersonContact(id);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public String getPerson(@PathParam("id") Long id)
+    {
+        Person p = f.getPerson(id);
+
+        if(p != null)
+        {
+            return new Gson().toJson(p);
+        }
+        
+        return "{}";
+    }
+    
+    @Path("contactinfo")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getpersonsInfo() {
+        return pw.getAllpersonContact();
+    }
+    
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String createPerson(String content) {
+    public String createPerson(String content)
+    {
         JsonObject body = new JsonParser().parse(content).getAsJsonObject();
         String firstName = null;
         String lastName = null;
         String mail = null;
         String street = null;
         String info = null;
-        
 
         if (body.has("firstName"))
         {
@@ -98,6 +141,7 @@ public class PersonRest {
         }
         
         Address a = new Address(street, info, null); // null er city info *TO BE MADE*
+        
         Person p = new Person(firstName, lastName, mail, a);
         f.addPerson(p);
 
@@ -114,7 +158,8 @@ public class PersonRest {
         JsonObject body = new JsonParser().parse(content).getAsJsonObject();
         Person p = f.getPerson(id);
 
-        if (body.has("firstName")) {
+        if (body.has("firstName"))
+        {
             p.setFirstName(body.get("firstName").getAsString());
         }
         if (body.has("lastName"))
@@ -125,11 +170,8 @@ public class PersonRest {
         {
             p.setEmail(body.get("email").getAsString());
         }
-
         f.editPerson(p);
-
-        String json = new Gson().toJson(p);
-        return json;
+        return pw.getWholePerson(p.getId());
     }
 
     @Path("{id}")

@@ -4,6 +4,7 @@ import Facade.facadeImpl;
 import Facade.facadeInterface;
 import converter.JSONConverter;
 import entity.Address;
+import entity.CityInfo;
 import entity.Hobby;
 import entity.Person;
 import io.restassured.RestAssured;
@@ -65,7 +66,7 @@ public class PersonRestIntegrationTest {
     public void testCreatePerson() {
         System.out.println("createPerson");
         //Making a new person
-        Address a = new Address("Test", "Test street", null); // null er CityInfo
+        Address a = new Address("Test", "Test street", null); 
         Person postedPerson = new Person("Sofia", "Petersen", "Sofia@gmail.com", a);
         Person newPerson = given()
                 .contentType(ContentType.JSON)
@@ -75,13 +76,13 @@ public class PersonRestIntegrationTest {
 
         assertNotNull(newPerson.getId());
     }
-/*
+
     @Test
-    public void testGetPersonId() {
-        System.out.println("getPersonId");
+    public void testGetPerson() {
+        System.out.println("getPerson");
 
         //Making a new person
-        Address a = new Address("Test", "Test Street", null); // CityInfo er null
+        Address a = new Address("Test", "Test Street", null); 
         Person postedPerson = new Person("William", "Thomsen", "William@gmail.com", a);
         Person newPerson = given()
                 .contentType(ContentType.JSON)
@@ -92,18 +93,19 @@ public class PersonRestIntegrationTest {
         //See if we can get him
         Person gottenPerson = given()
                 .contentType(ContentType.JSON)
-                .when().get("/api/person/complete/" + newPerson.getId()).as(Person.class);
+                .when().get("/api/person/" + newPerson.getId())
+                .as(Person.class);
 
         assertNotNull(gottenPerson.getId());
         assertEquals("William", gottenPerson.getFirstName());
 
     }
-*/
+    
     @Test
     public void testDeletePerson() {
         System.out.println("deletePerson");
         //Making a new person
-        Address a = new Address("Test", "Test Street", null); // null er CityInfo
+        Address a = new Address("Test", "Test Street", null); 
         Person postedPerson = new Person("Anna", "Rasmussen", "Anna@gmail.com", a);
         Person newPerson = given()
                 .contentType(ContentType.JSON)
@@ -124,19 +126,6 @@ public class PersonRestIntegrationTest {
         PersonRest instance = new PersonRest();
         String expResult = "";
         String result = instance.getpersons();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testEditPerson() {
-        System.out.println("editPerson");
-        String content = "";
-        Long id = null;
-        PersonRest instance = new PersonRest();
-        String expResult = "";
-        String result = instance.editPerson(content, id);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

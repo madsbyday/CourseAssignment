@@ -27,11 +27,14 @@ public class test {
   
         g.addHobbiesToDatabase(); // This function makes 50 hobbies
         
+        // Change depending for how many person and companys you want to generate
+        int numberToGenerate = 20;
+        for (int i = 0; i < numberToGenerate; i++) {
         g.addPersonToDatabase(); // This function makes 1 person
-        g.addCompanyToDatabase(); // This function makes 1 company
-        
-        
-
+        }
+        for (int i = 0; 9 < numberToGenerate; i++) {
+            g.addCompanyToDatabase(); // This function makes 1 company
+        }
     }
     
 }
