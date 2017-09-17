@@ -12,6 +12,7 @@ import io.restassured.parsing.Parser;
 import static io.restassured.RestAssured.given;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.persistence.Persistence;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import org.junit.After;
@@ -30,7 +31,7 @@ public class PersonRestIntegrationTest {
     public PersonRestIntegrationTest() {
     }
 
-    private facadeInterface f = new facadeImpl();
+    private facadeInterface f = new facadeImpl(Persistence.createEntityManagerFactory("CAPU"));
 
     @BeforeClass
     public static void setUpClass() {

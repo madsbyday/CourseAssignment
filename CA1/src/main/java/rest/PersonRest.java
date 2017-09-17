@@ -42,12 +42,12 @@ public class PersonRest {
     @Context
     private UriInfo context;
 
-    private facadeInterface f = new facadeImpl();
+    private facadeInterface f = new facadeImpl(Persistence.createEntityManagerFactory("CAPU"));
     PersonWhole pw = new PersonWhole();
     
 
     public PersonRest() {
-        f.addEntityManagerFactory(Persistence.createEntityManagerFactory("CAPU"));
+        //f.addEntityManagerFactory(Persistence.createEntityManagerFactory("CAPU"));
     }
 
   
@@ -56,7 +56,8 @@ public class PersonRest {
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonId(@PathParam("id") long id)
     {
-        return pw.getWholePerson(id);
+        Person p = f.getPerson(id);
+        return JSONConverter.getJSONFromPerson(p);
     } // returns person from database as json object
 
     @Path("complete")

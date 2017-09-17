@@ -1,0 +1,118 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: Consolas,monaco,monospace; 
+}
+header {
+    width: 100%;
+    height: 60px;
+    background-color: #575757;
+}
+header > h1 {
+    color: #efefef;
+    padding-top: 10px;
+    margin-left: 20px;
+}
+#main {
+    margin-top: 15px;
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#main > h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.info-box {
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+a.link {
+    display: block;
+    width: 300px;
+    text-decoration: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 22px;
+    text-align: center;
+    background-color: #575757;
+    color: #efefef;
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+a.link:hover {
+    background-color: #818181;
+}
+label {
+    float: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+    clear: both;
+}
+.tb {
+    margin-bottom: 10px;
+    width: 400px;
+    height: 30px;
+    float: left;
+    clear: both;
+    font-size: 16px;
+    padding-left: 5px;
+}
+.bt {
+    float: left;
+    clear: both;
+    margin-bottom: 20px;
+    width: 100px;
+    height: 30px;
+}
+.btd {
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    width: 100px;
+    height: 30px;
+}
+table#TablePersons {
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+}
+table#TablePersons > thead > tr {
+    background-color: #575757;
+    color: #efefef;
+    font-weight: normal;
+    float: left;
+}
+table#TablePersons > thead > tr > th {
+    width: 140px;
+    height: 45px;
+    text-align: center;
+}
+
+table#TablePersons > #TablePersonsBody > tr > td {
+    text-align: center;
+    padding-top: 15px;
+    padding-left: 5px;
+    width: 135px;
+    height: 50px;
+    float: left;
+}
+table#TablePersons > #TablePersonsBody > tr:nth-child(even)  {
+    background-color: #adadad;
+}
+table#TablePersons > #TablePersonsBody > tr {
+    height: 50px;
+    float: left;
+    border-bottom: 1px solid #000;
+}
+table#TablePersons > #TablePersonsBody > tr > td.list {
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 147px;
+    padding: 0px;
+    border-left: 1px solid #000;
+}

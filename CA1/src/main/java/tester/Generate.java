@@ -26,10 +26,10 @@ import javax.persistence.Persistence;
  */
 public class Generate {
 
-    private facadeInterface f = new facadeImpl();
+    private facadeInterface f = new facadeImpl(Persistence.createEntityManagerFactory("CAPU"));
 
     public Generate() {
-        f.addEntityManagerFactory(Persistence.createEntityManagerFactory("CAPU"));
+        //f.addEntityManagerFactory(Persistence.createEntityManagerFactory("CAPU"));
     }
 
     Random rnd = new Random();
