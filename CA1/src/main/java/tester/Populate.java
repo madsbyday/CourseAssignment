@@ -5,10 +5,14 @@
  */
 package tester;
 
+import entity.Address;
+import entity.Hobby;
 import entity.Person;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -16,22 +20,23 @@ import javax.persistence.Persistence;
  */
 public class Populate
 {
-    
+
     public static void main(String[] args)
     {
         
-        Person p = new Person(null,"Hans", "Andersen", "HA@mail.com");
-        
+        Address a1 = new Address("Hovedvej 1", "Recidential", null); // Mangler CiryInfo
+        Person p1 = new Person("Lone", "Lassen", "LL@mail.com", a1);
+
         EntityManagerFactory emfn = Persistence.createEntityManagerFactory("CAPU");
         EntityManager em = emfn.createEntityManager();
 
         try {
             em.getTransaction().begin();
-            em.persist(p);
+            em.persist(p1);
             em.getTransaction().commit();
         } finally {
             em.close();
-        }
+       }
+     
     }
-    
 }

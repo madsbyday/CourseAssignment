@@ -10,35 +10,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Alexander
  */
 @Entity
-public class Phone implements Serializable {
+public class CityInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String number;
-
-    public Phone(String number, String description, InfoEntity infoEntity) {
-        this.number = number;
-        this.description = description;
-        this.infoEntity = infoEntity;
-    }
-    
-    public Phone() {
-    }
-    
-    private String description;
-    
-    @ManyToOne
-    private InfoEntity infoEntity;
+    private String zipCode;
+    private String city;
 
     public Long getId() {
         return id;
@@ -48,23 +34,24 @@ public class Phone implements Serializable {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCity() {
+        return city;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCity(String city) {
+        this.city = city;
     }
+
     
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -75,10 +62,10 @@ public class Phone implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Phone)) {
+        if (!(object instanceof CityInfo)) {
             return false;
         }
-        Phone other = (Phone) object;
+        CityInfo other = (CityInfo) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -87,7 +74,7 @@ public class Phone implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Phone[ id=" + id + " ]";
+        return "entity.CItyInfo[ id=" + id + " ]";
     }
     
 }
