@@ -4,30 +4,40 @@
         <title>CA Api Test</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="styleSheet.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        
-        <p>GET person from id: </p> <p id="printGetPerson">  </p>
-        <form id="getPerson">
-            <input type="text" name="getPersonID"/> 
-            <button name="getPerson" type="submit" >Get Person</button>
-        </form>
+        <header><h1>Course Assignment</h1></header>
+        <div id="main">
+            <h3>All Persons</h3>
+            <table id="TablePersons">
+                <thead>
+                    <tr><th>First name</th><th>Last name</th><th>Email</th><th>Road</th><th>Road info</th> <th>City</th><th>Zipcode</th><th>Phones</th><th>Hobbies</th></tr>
+                </thead>
+                <tbody id ="TablePersonsBody">
 
-        <br>
-        
-        <p> POST new person: </p>
-        <form id="postPerson">
-            <input type="text" name="postFirstName" placeholder="First name"/> 
-            <input type="text" name="postLastName" placeholder="Last name"/> 
-            <input type="text" name="postEmail" placeholder="Email"/>
-            <input type="text" name="postStreet" placeholder="Street"/>
-            <input type="text" name="addInfo" placeholder= "Additional-info" />
-            <button name="postPerson" type="submit" >create Person</button>
-        </form>
-        
+                </tbody>
+            </table>
 
+                <label for="personid">Get person by id</label>
+                <input type="text" class="tb" id="personid" name="getPersonID"/> 
+                <input id="getPersonbt" name="getPerson" class="bt"  type="button" value="Get">
+                <input name="deletePerson" class="btd" type="button" value="Delete">
+                
+                <label for="pf">Firstname:</label>
+                <input type="text" id="pf" class="tb" name="postFirstName"/>
+                <label for="pl">LastName:</label>
+                <input type="text" id="pl" class="tb" name="postLastName"/> 
+                <label for="pe">Email:</label>
+                <input type="text" id="pe" class="tb" name="postEmail"/>
 
-        <script src="js script.js"></script>
+                <input id="CreatePersonbt" name="postPerson" class="bt" type="button" value="Create">
+                <input id="UpdatePersonbt" name="UpdatePerson" class="btd" type="button" value="Update">
+            <p id="filler"></p>
+
+        </div>
+
+        <script src="js.js" type="text/javascript"></script>
 
     </body>
 </html>
