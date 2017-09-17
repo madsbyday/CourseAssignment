@@ -3,9 +3,9 @@ By Alexander Nielsen, Jonas El Sabban, Mads Køster Andersen
 
 DAT - Groupe 4
 
-##[Link to our website](http://207.154.229.78:8080/CA1-1.0-SNAPSHOT/ "CA1") 
-
+[Link to our website](http://207.154.229.78:8080/CA1-1.0-SNAPSHOT/ "CA1") 
 ---
+
 ### Testing our project
 * Click the link to our website and try to use our features. You should be able to create person and then get get them again.
 * Download this project as a zip file. Then in Netbeans click on 'file' --> 'Import Project' --> 'From ZIP'. 
