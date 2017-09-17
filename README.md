@@ -3,7 +3,7 @@ By Alexander Nielsen, Jonas El Sabban, Mads Køster Andersen
 
 DAT - Groupe 4
 
-[Link to our website](http://207.154.229.78:8080/ "CA1") 
+##[Link to our website](http://207.154.229.78:8080/CA1-1.0-SNAPSHOT/ "CA1") 
 
 ---
 ### Testing our project
