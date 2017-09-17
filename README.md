@@ -10,6 +10,7 @@ DAT - Groupe 4
 * Click the link to our website and try to use our features. You should be able to create person and then get get them again.
 * Download this project as a zip file. Then in Netbeans click on 'file' --> 'Import Project' --> 'From ZIP'. 
 * Click 'Clean & Build' to run all of our tests.
+* In the Package tester is a java file called test.java, run that file to generate a bunch of new data for the database. 
 
 Clean and Build will run our tests and if it says "BUILD SUCCESS" in the output. Then our tests where a success.
 
