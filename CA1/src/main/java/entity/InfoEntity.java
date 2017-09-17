@@ -60,7 +60,7 @@ public abstract class InfoEntity implements Serializable {
     }
     
     
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     private Address address;
 
     public Long getId() {

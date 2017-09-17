@@ -74,7 +74,9 @@ public class PersonRest {
         String firstName = null;
         String lastName = null;
         String mail = null;
-        String address = null;
+        String street = null;
+        String info = null;
+        
 
         if (body.has("firstName"))
         {
@@ -88,8 +90,14 @@ public class PersonRest {
         {
             mail = body.get("email").getAsString();
         }
+        if (body.has("address")) {
+            street = body.getAsJsonObject("address").get("street").getAsString();
+        }
+        if (body.has("address")) {
+            info = body.getAsJsonObject("address").get("additionalInfo").getAsString();
+        }
         
-        Address a = new Address("geg", "fefa"); // Mangler CityInfo
+        Address a = new Address(street, info, null); // null er city info *TO BE MADE*
         Person p = new Person(firstName, lastName, mail, a);
         f.addPerson(p);
 
