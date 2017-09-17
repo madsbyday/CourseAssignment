@@ -19,9 +19,9 @@ import static org.junit.Assert.*;
  *
  * @author Alexander
  */
-public class CompanyRestIntegrationTe {
+public class CompanyRestIntegrationTest {
 
-    public CompanyRestIntegrationTe() {
+    public CompanyRestIntegrationTest() {
     }
 
     @BeforeClass

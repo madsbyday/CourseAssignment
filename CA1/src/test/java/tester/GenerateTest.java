@@ -36,7 +36,8 @@ public class GenerateTest {
     @After
     public void tearDown() {
     }
-
+    
+    // Making sure that the company email does not contain illigal symbols
     @Test
     public void testMakeCompanyEmail() {
         System.out.println("makeCompanyEmail");

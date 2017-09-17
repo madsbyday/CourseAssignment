@@ -25,10 +25,12 @@ public class test {
         
         Generate g = new Generate();
   
+        g.addHobbiesToDatabase(); // This function makes 50 hobbies
+        
         g.addPersonToDatabase(); // This function makes 1 person
         g.addCompanyToDatabase(); // This function makes 1 company
         
-        g.addHobbiesToDatabase(); // This function makes 50 hobbies
+        
 
     }
     

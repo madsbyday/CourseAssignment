@@ -71,6 +71,7 @@ public class Generate {
         String number = "" + (rnd.nextInt(90000000) + 10000000);
         Phone p = new Phone(number, phoneDesc[rnd.nextInt(2)], f.getPerson2(pers));
         f.addPhone(p);
+        i++;
         }
 
     }
@@ -98,6 +99,7 @@ public class Generate {
         String number = "" + (rnd.nextInt(90000000) + 10000000);
         Phone p = new Phone(number, phoneDesc[rnd.nextInt(3) + 2], f.getCompany2(c));
         f.addPhone(p);
+        i++;
         }
     }
 
