@@ -263,6 +263,24 @@ public class facadeImpl implements facadeInterface {
             em.getTransaction().commit();
         } finally {
             em.close();
+
+      @Override
+        public List<Phone> getPhonesByPerson(long id) {
+        EntityManager em = emf.createEntityManager();
+        
+        List<Phone> phones = null;
+        
+        Query query = null;
+        
+        try {
+            em.getTransaction().begin();
+            
+            query = em.createQuery("SELECT p FROM Phone p WHERE p.infoEntity.id = " + id);
+            phones = (List<Phone>)query.getResultList();
+            
+            return phones;
+
+
         }
 
         return p;

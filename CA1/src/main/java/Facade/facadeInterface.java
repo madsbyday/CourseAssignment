@@ -43,4 +43,6 @@ public interface facadeInterface {
     public CityInfo getCityInfo(Long id);
     
     public Hobby addHobby(Hobby h);
+  
+    public List<Phone> getPhonesByPerson(long id);
 }
