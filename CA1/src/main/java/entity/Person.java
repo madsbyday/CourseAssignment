@@ -21,20 +21,17 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Person extends InfoEntity implements Serializable {
 
-    public Person(String firstName, String lastName, String email)
+    public Person(String firstName, String lastName, String email, Address address)
     {
-        super(email);
+        super(email, address);
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
 
     public Person()
     {
         
     }
-    
-    
     
     @ManyToMany(mappedBy = "persons")
     private List<Hobby> hobbys;

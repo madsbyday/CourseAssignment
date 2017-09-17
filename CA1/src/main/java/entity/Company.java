@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,9 +21,10 @@ import javax.persistence.InheritanceType;
 @Entity
 public class Company extends InfoEntity implements Serializable {
 
-    public Company(String name, String description, int numEmployees, double marketValue, String email)
+    public Company(String cvr, String name, String description, int numEmployees, double marketValue, String email, Address address)
     {
-        super(email);
+        super(email, address);
+        this.cvr = cvr;
         this.name = name;
         this.description = description;
         this.numEmployees = numEmployees;
@@ -33,10 +35,7 @@ public class Company extends InfoEntity implements Serializable {
     {
         
     }
-    
-    
-    
-    
+
     private String name;
     
     private String description;

@@ -25,6 +25,16 @@ public class Phone implements Serializable {
     private Long id;
     
     private String number;
+
+    public Phone(String number, String description, InfoEntity infoEntity) {
+        this.number = number;
+        this.description = description;
+        this.infoEntity = infoEntity;
+    }
+    
+    public Phone() {
+    }
+    
     private String description;
     
     @ManyToOne

@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import entity.Address;
 import entity.Hobby;
 import java.util.List;
 import javax.ws.rs.DELETE;
@@ -36,8 +37,7 @@ import jsonmapper.PersonWhole;
  * @author Sanox
  */
 @Path("person")
-public class PersonRest
-{
+public class PersonRest {
 
     @Context
     private UriInfo context;
@@ -46,16 +46,11 @@ public class PersonRest
     PersonWhole pw = new PersonWhole();
     
 
-    public PersonRest()
-    {
+    public PersonRest() {
         f.addEntityManagerFactory(Persistence.createEntityManagerFactory("CAPU"));
     }
 
-    /**
-     * Retrieves representation of an instance of rest.PersonRest
-     *
-     * @return an instance of java.lang.String
-     */
+  
     @Path("complete/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -74,12 +69,12 @@ public class PersonRest
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String createPerson(String content)
-    {
+    public String createPerson(String content) {
         JsonObject body = new JsonParser().parse(content).getAsJsonObject();
         String firstName = null;
         String lastName = null;
         String mail = null;
+        String address = null;
 
         if (body.has("firstName"))
         {
@@ -93,8 +88,9 @@ public class PersonRest
         {
             mail = body.get("email").getAsString();
         }
-
-        Person p = new Person(firstName, lastName, mail);
+        
+        Address a = new Address("geg", "fefa"); // Mangler CityInfo
+        Person p = new Person(firstName, lastName, mail, a);
         f.addPerson(p);
 
         String json = new Gson().toJson(p);
@@ -110,8 +106,7 @@ public class PersonRest
         JsonObject body = new JsonParser().parse(content).getAsJsonObject();
         Person p = f.getPerson(id);
 
-        if (body.has("firstName"))
-        {
+        if (body.has("firstName")) {
             p.setFirstName(body.get("firstName").getAsString());
         }
         if (body.has("lastName"))

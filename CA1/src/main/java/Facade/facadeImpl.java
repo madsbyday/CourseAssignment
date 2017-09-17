@@ -1,5 +1,7 @@
 package Facade;
 
+import entity.Address;
+import entity.CityInfo;
 import entity.Company;
 import entity.Hobby;
 import entity.Person;
@@ -41,6 +43,25 @@ public class facadeImpl implements facadeInterface {
         }
 
         return p;
+    }
+
+    @Override
+    public Person getPerson2(Person p) {
+        EntityManager em = emf.createEntityManager();
+
+        Person person;
+
+        try {
+            em.getTransaction().begin();
+            person = em.find(Person.class, p.getId());
+            if (person != null) {
+                person = p;
+            }
+        } finally {
+            em.close();
+        }
+
+        return person;
     }
 
     @Override
@@ -128,6 +149,25 @@ public class facadeImpl implements facadeInterface {
     }
 
     @Override
+    public Company getCompany2(Company company) {
+        EntityManager em = emf.createEntityManager();
+
+        Company c;
+
+        try {
+            em.getTransaction().begin();
+            c = em.find(Company.class, company.getId());
+            if (c != null) {
+                c = company;
+            }
+        } finally {
+            em.close();
+        }
+
+        return c;
+    }
+
+    @Override
     public List<Company> getCompanies() {
         EntityManager em = emf.createEntityManager();
 
@@ -198,8 +238,33 @@ public class facadeImpl implements facadeInterface {
 
     }
 
+    @Override
+    public Address addAddress(Address a) {
+        EntityManager em = emf.createEntityManager();
 
-@Override
+        try {
+            em.getTransaction().begin();
+            em.persist(a);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+
+        return a;
+    }
+
+    @Override
+    public Phone addPhone(Phone p) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.persist(p);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+
+      @Override
         public List<Phone> getPhonesByPerson(long id) {
         EntityManager em = emf.createEntityManager();
         
@@ -215,10 +280,40 @@ public class facadeImpl implements facadeInterface {
             
             return phones;
 
+
         }
-        finally {
+
+        return p;
+    }
+
+    @Override
+    public CityInfo getCityInfo(Long id) {
+        EntityManager em = emf.createEntityManager();
+
+        CityInfo ci;
+
+        try {
+            ci = em.find(CityInfo.class, id);
+        } finally {
             em.close();
         }
+
+        return ci;
+    }
+
+    @Override
+    public Hobby addHobby(Hobby h) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.persist(h);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
         }
+
+        return h;
+    }
 
 }
