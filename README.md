@@ -9,7 +9,7 @@ DAT - Groupe 4
 ### Testing our project
 * Click the link to our website and try to use our features. You should be able to create person and then get get them again.
 * Download this project as a zip file. Then in Netbeans click on 'file' --> 'Import Project' --> 'From ZIP'. 
-* In the Package tester is a java file called test.java, run that file to generate a bunch of new data for the database. 
+* In the Package tester is a java file called test.java, run that file to clean the database and generate a bunch of new data.
 * Click 'Clean & Build' to run all of our tests.
 
 
